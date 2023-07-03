@@ -36,10 +36,6 @@ classifiers = [
 dynamic = [
   "version",
 ]
-dependencies = [
-  'pyperclip; platform_system == "Darwin"',
-  'pyperclip; platform_system == "Windows"',
-]
 [project.optional-dependencies]
 tests = [
   "pytest",
