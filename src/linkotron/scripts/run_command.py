@@ -6,7 +6,6 @@ import subprocess
 
 def run(command: str, with_console: bool = True, line_limit: int | None = None) -> None:
     command_parts = shlex.split(command)
-    command_parts.append("--dry-run")
     process = subprocess.run(command_parts, capture_output=True, text=True)
     print()
     if with_console:
