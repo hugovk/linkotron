@@ -1,27 +1,27 @@
-# pepotron
+# linkotron
 
-[![PyPI version](https://img.shields.io/pypi/v/pepotron.svg?logo=pypi&logoColor=FFE873)](https://pypi.org/project/pepotron/)
-[![Supported Python versions](https://img.shields.io/pypi/pyversions/pepotron.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/pepotron/)
-[![PyPI downloads](https://img.shields.io/pypi/dm/pepotron.svg)](https://pypistats.org/packages/pepotron)
-[![Test](https://github.com/hugovk/pepotron/actions/workflows/test.yml/badge.svg)](https://github.com/hugovk/pepotron/actions)
-[![Codecov](https://codecov.io/gh/hugovk/pepotron/branch/main/graph/badge.svg)](https://codecov.io/gh/hugovk/pepotron)
-[![Licence](https://img.shields.io/github/license/hugovk/pepotron.svg)](LICENSE.txt)
+[![PyPI version](https://img.shields.io/pypi/v/linkotron.svg?logo=pypi&logoColor=FFE873)](https://pypi.org/project/linkotron/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/linkotron.svg?logo=python&logoColor=FFE873)](https://pypi.org/project/linkotron/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/linkotron.svg)](https://pypistats.org/packages/linkotron)
+[![Test](https://github.com/hugovk/linkotron/actions/workflows/test.yml/badge.svg)](https://github.com/hugovk/linkotron/actions)
+[![Codecov](https://codecov.io/gh/hugovk/linkotron/branch/main/graph/badge.svg)](https://codecov.io/gh/hugovk/linkotron)
+[![Licence](https://img.shields.io/github/license/hugovk/linkotron.svg)](LICENSE.txt)
 [![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
 
-CLI to open PEPs in your browser.
+CLI to format GitHub links in a shorter format.
 
 ## Installation
 
 ### From PyPI
 
 ```bash
-python3 -m pip install --upgrade pepotron
+python3 -m pip install --upgrade linkotron
 ```
 
 ### With [pipx][pipx]
 
 ```bash
-pipx install pepotron
+pipx install linkotron
 ```
 
 [pipx]: https://github.com/pypa/pipx
@@ -29,192 +29,121 @@ pipx install pepotron
 ### From source
 
 ```bash
-git clone https://github.com/hugovk/pepotron
-cd pepotron
+git clone https://github.com/hugovk/linkotron
+cd linkotron
 python3 -m pip install .
 ```
 
 ## Usage
 
-### Open a PEP
+Run `linkotron` or `linky`, they do the same thing.
 
 <!-- [[[cog
-from pepotron.scripts.run_command import run
-run("pep 8")
+from linkotron.scripts.run_command import run
+run("linky --help")
 ]]] -->
 
 ```console
-$ pep 8
-https://peps.python.org/pep-0008/
-```
+$ linky --help
+usage: linky [-h] [-V] [-m] [-r] input
 
-<!-- [[[end]]] -->
-
-### Open release schedule PEP for a Python version
-
-<!-- [[[cog run("pep 3.11") ]]] -->
-
-```console
-$ pep 3.11
-https://peps.python.org/pep-0664/
-```
-
-<!-- [[[end]]] -->
-
-### Open a PEP by searching for words in the title
-
-<!-- [[[cog run("pep dead batteries") ]]] -->
-
-```console
-$ pep dead batteries
-Score	Result
-90	PEP 594: Removing dead batteries from the standard library
-55	PEP 288: Generators Attributes and Exceptions
-55	PEP 363: Syntax For Dynamic Attribute Access
-55	PEP 476: Enabling certificate verification by default for stdlib http clients
-52	PEP 349: Allow str() to return unicode strings
-
-https://peps.python.org/pep-0594/
-```
-
-<!-- [[[end]]] -->
-
-### Open a PEP topic
-
-<!-- [[[cog run("pep governance") ]]] -->
-
-```console
-$ pep governance
-https://peps.python.org/topic/governance/
-```
-
-<!-- [[[end]]] -->
-
-<!-- [[[cog run("pep packaging") ]]] -->
-
-```console
-$ pep packaging
-https://peps.python.org/topic/packaging/
-```
-
-<!-- [[[end]]] -->
-
-<!-- [[[cog run("pep release") ]]] -->
-
-```console
-$ pep release
-https://peps.python.org/topic/release/
-```
-
-<!-- [[[end]]] -->
-
-<!-- [[[cog run("pep typing") ]]] -->
-
-```console
-$ pep typing
-https://peps.python.org/topic/typing/
-```
-
-<!-- [[[end]]] -->
-
-<!-- [[[cog run("pep topics") ]]] -->
-
-```console
-$ pep topics
-https://peps.python.org/topic/
-```
-
-<!-- [[[end]]] -->
-
-### Open a build preview of a python/peps PR
-
-<!-- [[[cog run("pep 594 --pr 2440") ]]] -->
-
-```console
-$ pep 594 --pr 2440
-https://pep-previews--2440.org.readthedocs.build/pep-0594/
-```
-
-<!-- [[[end]]] -->
-
-### Open the PEPs website
-
-<!-- [[[cog run("pep") ]]] -->
-
-```console
-$ pep
-https://peps.python.org
-```
-
-<!-- [[[end]]] -->
-
-<!-- [[[cog run("pep --pr 2440") ]]] -->
-
-```console
-$ pep --pr 2440
-https://pep-previews--2440.org.readthedocs.build
-```
-
-<!-- [[[end]]] -->
-
-### Open a BPO issue in the browser
-
-Issues from [bugs.python.org](https://bugs.python.org/) have been migrated to
-[GitHub issues](https://github.com/python/cpython/issues) and have new numbers. This
-command will open the redirect page to take you to the new issue.
-
-<!-- [[[cog run("bpo 46208") ]]] -->
-
-```console
-$ bpo 46208
-https://bugs.python.org/issue?@action=redirect&bpo=46208
-```
-
-<!-- [[[end]]] -->
-
-This redirects to https://github.com/python/cpython/issues/90366
-
-### Help
-
-<!-- [[[cog run("pep --help") ]]] -->
-
-```console
-$ pep --help
-usage: pep [-h] [-u URL] [-p PR] [--clear-cache] [-n] [-v] [-V] [search ...]
-
-pepotron: CLI to open PEPs in your browser
+linkotron: CLI to format GitHub links in a shorter format.
 
 positional arguments:
-  search             PEP number, or Python version for its schedule, or words from title
+  input                 Text containing GitHub links to shorten
 
 options:
-  -h, --help         show this help message and exit
-  -u URL, --url URL  Base URL for PEPs (default: https://peps.python.org)
-  -p PR, --pr PR     Open preview for python/peps PR
-  --clear-cache      Clear cache before running
-  -n, --dry-run      Don't open in browser
-  -v, --verbose      Verbose logging
-  -V, --version      show program's version number and exit
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  -m, --md, --markdown  Output Markdown
+  -r, --rst, --restructuredtext
+                        Output reStructuredText
 ```
 
 <!-- [[[end]]] -->
 
-<!-- [[[cog run("bpo --help") ]]] -->
+### Linkify an issue
+
+<!-- [[[cog
+from linkotron.scripts.run_command import run
+run("linky https://github.com/python/peps/issues/1012")
+]]] -->
 
 ```console
-$ bpo --help
-usage: bpo [-h] [-n] [-v] [-V] bpo
+$ linky https://github.com/python/peps/issues/1012
+python/peps#1012
+```
 
-Open this BPO in the browser
+<!-- [[[end]]] -->
 
-positional arguments:
-  bpo            BPO number
+### Linkify a pull request
 
-options:
-  -h, --help     show this help message and exit
-  -n, --dry-run  Don't open in browser
-  -v, --verbose  Verbose logging
-  -V, --version  show program's version number and exit
+<!-- [[[cog
+from linkotron.scripts.run_command import run
+run("linky https://github.com/python/peps/pull/2399")
+]]] -->
+
+```console
+$ linky https://github.com/python/peps/pull/2399
+python/peps#2399
+```
+
+<!-- [[[end]]] -->
+
+### Linkify a commit
+
+<!-- [[[cog
+from linkotron.scripts.run_command import run
+run("linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc621c49690de0")
+]]] -->
+
+```console
+$ linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc621c49690de0
+hugovk/cpython#28b2355
+```
+
+<!-- [[[end]]] -->
+
+### Linkify a comment
+
+<!-- [[[cog
+from linkotron.scripts.run_command import run
+run("linky https://github.com/python/peps/pull/2399#issuecomment-1063409480")
+]]] -->
+
+```console
+$ linky https://github.com/python/peps/pull/2399#issuecomment-1063409480
+python/peps#2399 (comment)
+```
+
+<!-- [[[end]]] -->
+
+### Formatting
+
+#### Markdown
+
+<!-- [[[cog
+run("linky --md https://github.com/python/peps/pull/2399")
+from linkotron.scripts.run_command import run
+]]] -->
+
+```console
+$ linky --md https://github.com/python/peps/pull/2399
+[python/peps#2399](https://github.com/python/peps/pull/2399)
+```
+
+<!-- [[[end]]] -->
+
+#### reStructuredText
+
+<!-- [[[cog
+from linkotron.scripts.run_command import run
+run("linky --rst https://github.com/python/peps/pull/2399")
+]]] -->
+
+```console
+$ linky --rst https://github.com/python/peps/pull/2399
+`python/peps#2399 <https://github.com/python/peps/pull/2399>`__
 ```
 
 <!-- [[[end]]] -->
