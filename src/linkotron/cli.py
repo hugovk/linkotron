@@ -5,7 +5,15 @@ from __future__ import annotations
 
 import argparse
 
-from linkotron import __version__, shorten
+from . import __version__, shorten
+
+try:
+    import pyperclip as copier  # type: ignore[import]
+except ImportError:
+    try:
+        import xerox as copier  # type: ignore[import]
+    except ImportError:
+        copier = None
 
 
 def main() -> None:
@@ -26,6 +34,9 @@ def main() -> None:
         action="store_true",
         help="Output reStructuredText",
     )
+    parser.add_argument(
+        "--no-copy", action="store_true", help="Do not copy output to clipboard"
+    )
     args = parser.parse_args()
 
     if args.md:
@@ -35,7 +46,12 @@ def main() -> None:
     else:
         format_ = None
 
-    print(shorten(line=args.input, format_=format_))
+    output = shorten(line=args.input, format_=format_)
+    if copier and not args.no_copy and output != args.input:
+        copier.copy(output)
+        print(f"Copied! {output}")
+    else:
+        print(f"{output}")
 
 
 if __name__ == "__main__":
