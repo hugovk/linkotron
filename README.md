@@ -45,7 +45,7 @@ run("linky --help")
 
 ```console
 $ linky --help
-usage: linky [-h] [-V] [-m] [-r] input
+usage: linky [-h] [-V] [-m] [-r] [--no-copy] input
 
 linkotron: CLI to format GitHub links in a shorter format.
 
@@ -58,6 +58,7 @@ options:
   -m, --md, --markdown  Output Markdown
   -r, --rst, --restructuredtext
                         Output reStructuredText
+  --no-copy             Do not copy output to clipboard
 ```
 
 <!-- [[[end]]] -->
@@ -71,7 +72,7 @@ run("linky https://github.com/python/peps/issues/1012")
 
 ```console
 $ linky https://github.com/python/peps/issues/1012
-python/peps#1012
+Copied! python/peps#1012
 ```
 
 <!-- [[[end]]] -->
@@ -85,7 +86,7 @@ run("linky https://github.com/python/peps/pull/2399")
 
 ```console
 $ linky https://github.com/python/peps/pull/2399
-python/peps#2399
+Copied! python/peps#2399
 ```
 
 <!-- [[[end]]] -->
@@ -99,7 +100,7 @@ run("linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc
 
 ```console
 $ linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc621c49690de0
-hugovk/cpython#28b2355
+Copied! hugovk/cpython#28b2355
 ```
 
 <!-- [[[end]]] -->
@@ -113,7 +114,7 @@ run("linky https://github.com/python/peps/pull/2399#issuecomment-1063409480")
 
 ```console
 $ linky https://github.com/python/peps/pull/2399#issuecomment-1063409480
-python/peps#2399 (comment)
+Copied! python/peps#2399 (comment)
 ```
 
 <!-- [[[end]]] -->
@@ -129,7 +130,7 @@ from linkotron.scripts.run_command import run
 
 ```console
 $ linky --md https://github.com/python/peps/pull/2399
-[python/peps#2399](https://github.com/python/peps/pull/2399)
+Copied! [python/peps#2399](https://github.com/python/peps/pull/2399)
 ```
 
 <!-- [[[end]]] -->
@@ -143,7 +144,7 @@ run("linky --rst https://github.com/python/peps/pull/2399")
 
 ```console
 $ linky --rst https://github.com/python/peps/pull/2399
-`python/peps#2399 <https://github.com/python/peps/pull/2399>`__
+Copied! `python/peps#2399 <https://github.com/python/peps/pull/2399>`__
 ```
 
 <!-- [[[end]]] -->
