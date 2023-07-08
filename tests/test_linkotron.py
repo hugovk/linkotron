@@ -22,13 +22,16 @@ import linkotron
             "https://github.com/python/peps/pull/2399#issuecomment-1063409480",
             "python/peps#2399 (comment)",
         ),
-        (
-            "some text",
-            "some text",
-        ),
     ],
 )
 def test_shorten(link: str, expected: str) -> None:
+    # Act / Assert
+    assert linkotron.shorten(link) == expected
+    assert linkotron.shorten(link + "/") == expected
+
+
+@pytest.mark.parametrize("link, expected", [("some text", "some text")])
+def test_shorten_no_link(link: str, expected: str) -> None:
     # Act / Assert
     assert linkotron.shorten(link) == expected
 
