@@ -30,14 +30,14 @@ class Patterns:
     REPO = r"[a-zA-Z0-9]+([-_\.][a-zA-Z0-9]+)*[-_\.]?[a-zA-Z0-9]+"
 
     PR_OR_ISSUE = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+)$"
+        rf"^https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+)/?$"
     )
     COMMIT = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/commit/([0-9a-f]+)$"
+        rf"^https://github.com/({USERNAME})/({REPO})/commit/([0-9a-f]+)/?$"
     )
     COMMENT = re.compile(
         rf"^https://github.com/({USERNAME})/({REPO})/"
-        r"(pull|issues)/(\d+)#issuecomment-[\d]+$"
+        r"(pull|issues)/(\d+)#issuecomment-[\d]+/?$"
     )
 
 
