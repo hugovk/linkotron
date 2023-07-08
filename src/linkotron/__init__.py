@@ -37,13 +37,12 @@ class Patterns:
     )
     COMMENT = re.compile(
         rf"^https://github.com/({USERNAME})/({REPO})/"
-        r"(pull|issues)/(\d+)#issuecomment-[\d]+/?$"
+        r"(pull|issues)/(\d+)#issuecomment-\d+/?$"
     )
 
 
 def shorten(line: str, *, format_: str | None = None) -> str:
     """Shorten GitHub links"""
-    short = None
     match m := RegexMatcher(line):
         case Patterns.PR_OR_ISSUE:
             short = f"{m[1]}/{m[3]}#{m[6]}"
