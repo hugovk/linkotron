@@ -41,7 +41,7 @@ class Patterns:
     )
 
 
-def shorten(line: str, *, format_: str | None = None) -> str:
+def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten GitHub links"""
     match m := RegexMatcher(line):
         case Patterns.PR_OR_ISSUE:
@@ -53,8 +53,8 @@ def shorten(line: str, *, format_: str | None = None) -> str:
         case _:
             return line
 
-    if format_ in ("md", "markdown"):
+    if formatter in ("md", "markdown"):
         return f"[{short}]({line})"
-    elif format_ in ("rst", "restructuredtext"):
+    elif formatter in ("rst", "restructuredtext"):
         return f"`{short} <{line}>`__"
     return short

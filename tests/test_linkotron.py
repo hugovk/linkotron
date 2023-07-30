@@ -37,7 +37,7 @@ def test_shorten_no_link(link: str, expected: str) -> None:
 
 
 @pytest.mark.parametrize(
-    "link, format_, expected",
+    "link, formatter, expected",
     [
         (
             "https://github.com/python/peps/pull/2399",
@@ -51,6 +51,6 @@ def test_shorten_no_link(link: str, expected: str) -> None:
         ),
     ],
 )
-def test_shorten_into_format(link: str, format_: str, expected: str) -> None:
+def test_shorten_into_format(link: str, formatter: str, expected: str) -> None:
     # Act / Assert
-    assert linkotron.shorten(link, format_=format_) == expected
+    assert linkotron.shorten(link, formatter=formatter) == expected
