@@ -23,30 +23,28 @@ def main() -> None:
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"
     )
-    parser.add_argument("input", help="Text containing GitHub links to shorten")
+    parser.add_argument("input", help="text containing GitHub links to shorten")
     parser.add_argument(
-        "-m", "--md", "--markdown", action="store_true", help="Output Markdown"
+        "--no-copy", action="store_true", help="do not copy output to clipboard"
     )
-    parser.add_argument(
-        "-r",
-        "--rst",
-        "--restructuredtext",
-        action="store_true",
-        help="Output reStructuredText",
-    )
-    parser.add_argument(
-        "--no-copy", action="store_true", help="Do not copy output to clipboard"
-    )
+
+    format_group = parser.add_argument_group("formatters")
+    format_group = format_group.add_mutually_exclusive_group()
+    for name, help_text in (
+        ("md", "Markdown"),
+        ("rst", "reStructuredText"),
+    ):
+        format_group.add_argument(
+            f"--{name}",
+            action="store_const",
+            const=name,
+            dest="formatter",
+            help=f"output in {help_text}",
+        )
+
     args = parser.parse_args()
 
-    if args.md:
-        format_ = "markdown"
-    elif args.rst:
-        format_ = "restructuredtext"
-    else:
-        format_ = None
-
-    output = shorten(line=args.input, format_=format_)
+    output = shorten(line=args.input, formatter=args.formatter)
     if copier and not args.no_copy and output != args.input:
         copier.copy(output)
         print(f"Copied! {output}")
