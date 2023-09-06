@@ -58,3 +58,15 @@ def test_shorten_no_link(link: str, expected: str) -> None:
 def test_shorten_into_format(link: str, formatter: str, expected: str) -> None:
     # Act / Assert
     assert linkotron.shorten(link, formatter=formatter) == expected
+
+
+@pytest.mark.parametrize(
+    "link, formatter",
+    [
+        ("[python/peps#2399](https://github.com/python/peps/pull/2399)", "md"),
+        ("`python/peps#2399 <https://github.com/python/peps/pull/2399>`__", "rst"),
+    ],
+)
+def test_format_already_shortened(link: str, formatter: str) -> None:
+    # Act / Assert
+    assert linkotron.shorten(link, formatter=formatter) == link
