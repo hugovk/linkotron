@@ -44,14 +44,14 @@ def test_shorten_no_link(link: str, expected: str) -> None:
     "link, formatter, expected",
     [
         (
-            "https://github.com/python/peps/pull/2399",
+            "abc https://github.com/python/peps/pull/2399 xyz",
             "md",
-            "[python/peps#2399](https://github.com/python/peps/pull/2399)",
+            "abc [python/peps#2399](https://github.com/python/peps/pull/2399) xyz",
         ),
         (
-            "https://github.com/python/peps/pull/2399",
+            "abc https://github.com/python/peps/pull/2399 xyz",
             "rst",
-            "`python/peps#2399 <https://github.com/python/peps/pull/2399>`__",
+            "abc `python/peps#2399 <https://github.com/python/peps/pull/2399>`__ xyz",
         ),
     ],
 )
