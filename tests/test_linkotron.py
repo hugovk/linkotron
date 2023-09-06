@@ -30,6 +30,8 @@ def test_shorten(link: str, expected: str) -> None:
     # Act / Assert
     assert linkotron.shorten(link) == expected
     assert linkotron.shorten(link + "/") == expected
+    assert linkotron.shorten(" " + link + " ") == expected
+    assert linkotron.shorten(" " + link + "/ ") == expected
 
 
 @pytest.mark.parametrize("link, expected", [("some text", "some text")])

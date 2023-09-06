@@ -39,6 +39,7 @@ dynamic = [
 dependencies = [
   'pyperclip; platform_system == "Darwin"',
   'pyperclip; platform_system == "Windows"',
+  "termcolor",
 ]
 [project.optional-dependencies]
 tests = [
