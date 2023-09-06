@@ -89,7 +89,7 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
     return short
 
 
-def color_diff(diff: Iterable[str]) -> Iterable[str]:
+def _color_diff(diff: Iterable[str]) -> Iterable[str]:
     for line in diff:
         if line.startswith("+"):
             yield colored(line, "green")
@@ -123,7 +123,7 @@ def shorten_file(filename: str, dry_run: bool) -> str:
             f.writelines(new_lines)
 
     if changes:
-        diff = color_diff(
+        diff = _color_diff(
             difflib.unified_diff(
                 old_lines, new_lines, fromfile=filename, tofile=filename
             )
