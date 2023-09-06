@@ -8,6 +8,8 @@ import pytest
 
 import linkotron
 
+from .data.expected import EXPECTED_MD_DIFF, EXPECTED_MD_NO_CHANGE, EXPECTED_RST_DIFF
+
 
 @pytest.mark.parametrize(
     "link, expected",
@@ -73,3 +75,22 @@ def test_shorten_into_format(link: str, formatter: str, expected: str) -> None:
 def test_format_already_shortened(link: str, formatter: str) -> None:
     # Act / Assert
     assert linkotron.shorten(link, formatter=formatter) == link
+
+
+@pytest.mark.parametrize(
+    "input_filename, expected",
+    [
+        pytest.param("test.md", EXPECTED_MD_DIFF, id="md"),
+        pytest.param("test.rst", EXPECTED_RST_DIFF, id="rst"),
+        pytest.param("test-no-change.md", EXPECTED_MD_NO_CHANGE, id="md-none"),
+    ],
+)
+def test_shorten_files(input_filename: str, expected: str) -> None:
+    # Arrange
+    input_filename = "tests/data/" + input_filename
+
+    # Act
+    output = linkotron.shorten_file(input_filename, dry_run=True)
+
+    # Assert
+    assert output.strip() == expected.strip()
