@@ -71,7 +71,15 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             return line
 
     if formatter in ("md", "markdown"):
-        return f"{prefix}[{short}]({long}){suffix}"
+        proposed = f"[{short}]({long})"
+        if line.startswith(proposed, m.m.start(2) - len(f"[{short}](")):
+            # Line already contains shortened URL, don't insert a new one
+            return line
+        return f"{prefix}{proposed}{suffix}"
     elif formatter in ("rst", "restructuredtext"):
-        return f"{prefix}`{short} <{long}>`__{suffix}"
+        proposed = f"`{short} <{long}>`__"
+        if line.startswith(proposed, m.m.start(2) - len(f"`{short} <")):
+            # Line already contains shortened URL, don't insert a new one
+            return line
+        return f"{prefix}{proposed}{suffix}"
     return short

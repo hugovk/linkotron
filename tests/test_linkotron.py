@@ -63,8 +63,11 @@ def test_shorten_into_format(link: str, formatter: str, expected: str) -> None:
 @pytest.mark.parametrize(
     "link, formatter",
     [
-        ("[python/peps#2399](https://github.com/python/peps/pull/2399)", "md"),
-        ("`python/peps#2399 <https://github.com/python/peps/pull/2399>`__", "rst"),
+        ("abc [python/peps#2399](https://github.com/python/peps/pull/2399) xyz", "md"),
+        (
+            "abc `python/peps#2399 <https://github.com/python/peps/pull/2399>`__ xyz",
+            "rst",
+        ),
     ],
 )
 def test_format_already_shortened(link: str, formatter: str) -> None:
