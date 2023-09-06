@@ -30,31 +30,40 @@ class Patterns:
     REPO = r"[a-zA-Z0-9]+([-_\.][a-zA-Z0-9]+)*[-_\.]?[a-zA-Z0-9]+"
 
     PR_OR_ISSUE = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+)/?$"
+        rf"(.*)(https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+))/?(.*)"
     )
     COMMIT = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/commit/([0-9a-f]+)/?$"
+        rf"(.*)(https://github.com/({USERNAME})/({REPO})/commit/([0-9a-f]+))/?(.*)"
     )
     COMMENT = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/"
-        r"(pull|issues)/(\d+)#issuecomment-\d+/?$"
+        rf"(.*)(https://github.com/({USERNAME})/({REPO})/"
+        r"(pull|issues)/(\d+)#issuecomment-\d+)/?(.*)"
     )
 
 
 def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten GitHub links"""
     match m := RegexMatcher(line):
-        case Patterns.PR_OR_ISSUE:
-            short = f"{m[1]}/{m[3]}#{m[6]}"
         case Patterns.COMMIT:
-            short = f"{m[1]}/{m[3]}#{m[5][:7]}"
+            prefix = m[1]
+            long = m[2]
+            short = f"{m[3]}/{m[5]}#{m[7][:7]}"
+            suffix = m[8]
         case Patterns.COMMENT:
-            short = f"{m[1]}/{m[3]}#{m[6]} (comment)"
+            prefix = m[1]
+            long = m[2]
+            short = f"{m[3]}/{m[5]}#{m[8]} (comment)"
+            suffix = m[9]
+        case Patterns.PR_OR_ISSUE:
+            prefix = m[1]
+            long = m[2]
+            short = f"{m[3]}/{m[5]}#{m[8]}"
+            suffix = m[9]
         case _:
             return line
 
     if formatter in ("md", "markdown"):
-        return f"[{short}]({line})"
+        return f"{prefix}[{short}]({long}){suffix}"
     elif formatter in ("rst", "restructuredtext"):
-        return f"`{short} <{line}>`__"
+        return f"`{prefix}{short} <{long}>`__{suffix}"
     return short
