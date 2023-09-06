@@ -65,5 +65,5 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
     if formatter in ("md", "markdown"):
         return f"{prefix}[{short}]({long}){suffix}"
     elif formatter in ("rst", "restructuredtext"):
-        return f"`{prefix}{short} <{long}>`__{suffix}"
+        return f"{prefix}`{short} <{long}>`__{suffix}"
     return short
