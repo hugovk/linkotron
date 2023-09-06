@@ -4,9 +4,13 @@ CLI to format links
 
 from __future__ import annotations
 
+import difflib
 import importlib.metadata
 import re
+from collections.abc import Iterable
 from typing import Any
+
+from termcolor import colored
 
 __version__ = importlib.metadata.version(__name__)
 
@@ -83,3 +87,47 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             return line
         return f"{prefix}{proposed}{suffix}"
     return short
+
+
+def color_diff(diff: Iterable[str]) -> Iterable[str]:
+    for line in diff:
+        if line.startswith("+"):
+            yield colored(line, "green")
+        elif line.startswith("-"):
+            yield colored(line, "red")
+        else:
+            yield line
+
+
+def shorten_file(filename: str, dry_run: bool) -> str:
+    with open(filename) as f:
+        old_lines = f.readlines()
+
+    formatter = None
+    if filename.endswith(".md"):
+        formatter = "markdown"
+    elif filename.endswith(".rst"):
+        formatter = "restructuredtext"
+
+    changes = 0
+    new_lines = []
+    for line in old_lines:
+        line = line.rstrip("\n")
+        new_line = shorten(line=line, formatter=formatter)
+        if new_line != line:
+            changes += 1
+        new_lines.append(new_line + "\n")
+
+    if changes and not dry_run:
+        with open(filename, "w") as f:
+            f.writelines(new_lines)
+
+    if changes:
+        diff = color_diff(
+            difflib.unified_diff(
+                old_lines, new_lines, fromfile=filename, tofile=filename
+            )
+        )
+        return "".join(diff)
+    else:
+        return colored(f"no change for {filename}", "yellow")
