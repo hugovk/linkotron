@@ -7,7 +7,12 @@ import pytest
 
 import linkotron
 
-from .data.expected import EXPECTED_MD_DIFF, EXPECTED_MD_NO_CHANGE, EXPECTED_RST_DIFF
+from .data.expected import (
+    EXPECTED_MD_DIFF,
+    EXPECTED_MD_NO_CHANGE,
+    EXPECTED_RST_DIFF,
+    EXPECTED_TXT_DIFF,
+)
 
 
 @pytest.mark.parametrize(
@@ -80,6 +85,7 @@ def test_format_already_shortened(link: str, formatter: str) -> None:
     [
         pytest.param("test.md", EXPECTED_MD_DIFF, id="md"),
         pytest.param("test.rst", EXPECTED_RST_DIFF, id="rst"),
+        pytest.param("test.txt", EXPECTED_TXT_DIFF, id="txt"),
         pytest.param("test-no-change.md", EXPECTED_MD_NO_CHANGE, id="md-none"),
     ],
 )
