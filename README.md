@@ -146,6 +146,35 @@ Copied! [python/peps#2399](https://github.com/python/peps/pull/2399)
 
 <!-- [[[end]]] -->
 
+#### Markdown file
+
+<!-- [[[cog
+run("linky tests/data/test.md --dry-run")
+]]] -->
+
+```console
+$ linky tests/data/test.md --dry-run
+--- tests/data/test.md
++++ tests/data/test.md
+@@ -2,11 +2,11 @@
+
+ ## One
+
+-abc https://github.com/python/python-docs-theme/pull/44 xyz
++abc [python/python-docs-theme#44](https://github.com/python/python-docs-theme/pull/44) xyz
+
+-abc https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14 xyz
++abc [python/python-docs-theme#bcb78b6](https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14) xyz
+
+-abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
++abc [python/python-docs-theme#44 (comment)](https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287) xyz
+
+
+ ## Two
+```
+
+<!-- [[[end]]] -->
+
 #### reStructuredText
 
 <!-- [[[cog
@@ -155,6 +184,35 @@ run("linky --rst https://github.com/python/peps/pull/2399")
 ```console
 $ linky --rst https://github.com/python/peps/pull/2399
 Copied! `python/peps#2399 <https://github.com/python/peps/pull/2399>`__
+```
+
+<!-- [[[end]]] -->
+
+#### reStructuredText file
+
+<!-- [[[cog
+run("linky tests/data/test.rst --dry-run")
+]]] -->
+
+```console
+$ linky tests/data/test.rst --dry-run
+--- tests/data/test.rst
++++ tests/data/test.rst
+@@ -5,11 +5,11 @@
+ One
+ ===
+
+-abc https://github.com/python/python-docs-theme/pull/44 xyz
++abc `python/python-docs-theme#44 <https://github.com/python/python-docs-theme/pull/44>`__ xyz
+
+-abc https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14 xyz
++abc `python/python-docs-theme#bcb78b6 <https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14>`__ xyz
+
+-abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
++abc `python/python-docs-theme#44 (comment) <https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287>`__ xyz
+
+ Two
+ ===
 ```
 
 <!-- [[[end]]] -->
