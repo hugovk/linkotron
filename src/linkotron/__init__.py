@@ -83,6 +83,9 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             # Line already contains shortened URL, don't insert a new one
             return line
         return f"{prefix}{proposed}{suffix}"
+    elif formatter == "txt":
+        return f"{prefix}{short}{suffix}"
+
     return short
 
 
@@ -106,7 +109,7 @@ def shorten_file(filename: str, dry_run: bool) -> str:
     with open(filename) as f:
         old_lines = f.readlines()
 
-    formatter = None
+    formatter = "txt"
     if filename.endswith(".md"):
         formatter = "markdown"
     elif filename.endswith(".rst"):
