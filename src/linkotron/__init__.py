@@ -3,13 +3,10 @@ CLI to format links
 """
 from __future__ import annotations
 
-import difflib
 import importlib.metadata
 import re
 from collections.abc import Iterable
 from typing import Any
-
-from termcolor import colored
 
 __version__ = importlib.metadata.version(__name__)
 
@@ -82,6 +79,8 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
 
 
 def _color_diff(diff: Iterable[str]) -> Iterable[str]:
+    from termcolor import colored
+
     for line in diff:
         if line.startswith("+"):
             yield colored(line, "green")
@@ -92,6 +91,10 @@ def _color_diff(diff: Iterable[str]) -> Iterable[str]:
 
 
 def shorten_file(filename: str, dry_run: bool) -> str:
+    import difflib
+
+    from termcolor import colored
+
     with open(filename) as f:
         old_lines = f.readlines()
 
