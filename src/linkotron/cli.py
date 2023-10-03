@@ -7,8 +7,6 @@ from __future__ import annotations
 import argparse
 import os.path
 
-from termcolor import colored, cprint
-
 from . import __version__, shorten, shorten_file
 
 try:
@@ -59,9 +57,13 @@ def main() -> None:
 
     output = shorten(line=args.input, formatter=args.formatter)
     if copier and not args.no_copy and output != args.input:
+        from termcolor import colored
+
         copier.copy(output)
         print(f"{colored('Copied!', 'yellow')} {colored(output, 'green')}")
     else:
+        from termcolor import cprint
+
         cprint(f"{output}", "green")
 
 
