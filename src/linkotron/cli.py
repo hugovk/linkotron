@@ -41,7 +41,9 @@ def main() -> None:
         ("rst", "reStructuredText"),
     ):
         format_group.add_argument(
+            f"-{name[0]}",
             f"--{name}",
+            f"--{help_text.lower()}",
             action="store_const",
             const=name,
             dest="formatter",
