@@ -83,7 +83,6 @@ Copied! python/peps#1012
 ### Linkify a pull request
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/python/peps/pull/2399")
 ]]] -->
 
@@ -97,7 +96,6 @@ Copied! python/peps#2399
 ### Linkify a commit
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc621c49690de0")
 ]]] -->
 
@@ -111,7 +109,6 @@ Copied! hugovk/cpython#28b2355
 ### Linkify a comment
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/python/peps/pull/2399#issuecomment-1063409480")
 ]]] -->
 
@@ -128,7 +125,6 @@ Copied! python/peps#2399 (comment)
 
 <!-- [[[cog
 run("linky --md https://github.com/python/peps/pull/2399")
-from linkotron.scripts.run_command import run
 ]]] -->
 
 ```console
@@ -138,16 +134,73 @@ Copied! [python/peps#2399](https://github.com/python/peps/pull/2399)
 
 <!-- [[[end]]] -->
 
+#### Markdown file
+
+<!-- [[[cog
+run("linky tests/data/test.md --dry-run")
+]]] -->
+
+```console
+$ linky tests/data/test.md --dry-run
+--- tests/data/test.md
++++ tests/data/test.md
+@@ -2,11 +2,11 @@
+
+ ## One
+
+-abc https://github.com/python/python-docs-theme/pull/44 xyz
++abc [python/python-docs-theme#44](https://github.com/python/python-docs-theme/pull/44) xyz
+
+-abc https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14 xyz
++abc [python/python-docs-theme#bcb78b6](https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14) xyz
+
+-abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
++abc [python/python-docs-theme#44 (comment)](https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287) xyz
+
+
+ ## Two
+```
+
+<!-- [[[end]]] -->
+
 #### reStructuredText
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky --rst https://github.com/python/peps/pull/2399")
 ]]] -->
 
 ```console
 $ linky --rst https://github.com/python/peps/pull/2399
 Copied! `python/peps#2399 <https://github.com/python/peps/pull/2399>`__
+```
+
+<!-- [[[end]]] -->
+
+#### reStructuredText file
+
+<!-- [[[cog
+run("linky tests/data/test.rst --dry-run")
+]]] -->
+
+```console
+$ linky tests/data/test.rst --dry-run
+--- tests/data/test.rst
++++ tests/data/test.rst
+@@ -5,11 +5,11 @@
+ One
+ ===
+
+-abc https://github.com/python/python-docs-theme/pull/44 xyz
++abc `python/python-docs-theme#44 <https://github.com/python/python-docs-theme/pull/44>`__ xyz
+
+-abc https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14 xyz
++abc `python/python-docs-theme#bcb78b6 <https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde030a7852299fd14>`__ xyz
+
+-abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
++abc `python/python-docs-theme#44 (comment) <https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287>`__ xyz
+
+ Two
+ ===
 ```
 
 <!-- [[[end]]] -->

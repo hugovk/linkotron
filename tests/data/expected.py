@@ -5,7 +5,7 @@ EXPECTED_MD_DIFF = """
 +++ tests/data/test.md
 @@ -2,11 +2,11 @@
  
- ## Not converted
+ ## One
  
 -abc https://github.com/python/python-docs-theme/pull/44 xyz
 +abc [python/python-docs-theme#44](https://github.com/python/python-docs-theme/pull/44) xyz
@@ -17,7 +17,7 @@ EXPECTED_MD_DIFF = """
 +abc [python/python-docs-theme#44 (comment)](https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287) xyz
  
  
- ## Already converted
+ ## Two
 
 """  # noqa: E501, W293
 
@@ -25,8 +25,8 @@ EXPECTED_RST_DIFF = """
 --- tests/data/test.rst
 +++ tests/data/test.rst
 @@ -5,11 +5,11 @@
- Not converted
- =============
+ One
+ ===
  
 -abc https://github.com/python/python-docs-theme/pull/44 xyz
 +abc `python/python-docs-theme#44 <https://github.com/python/python-docs-theme/pull/44>`__ xyz
@@ -37,8 +37,8 @@ EXPECTED_RST_DIFF = """
 -abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
 +abc `python/python-docs-theme#44 (comment) <https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287>`__ xyz
  
- Already converted
- =================
+ Two
+ ===
 
 """  # noqa: E501, W293
 

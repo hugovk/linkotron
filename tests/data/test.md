@@ -1,6 +1,6 @@
 # Markdown test file
 
-## Not converted
+## One
 
 abc https://github.com/python/python-docs-theme/pull/44 xyz
 
@@ -9,7 +9,7 @@ abc https://github.com/python/python-docs-theme/commit/bcb78b690e44a6f1662c75dde
 abc https://github.com/python/python-docs-theme/pull/44#issuecomment-1676720287 xyz
 
 
-## Already converted
+## Two
 
 abc [python/python-docs-theme#44](https://github.com/python/python-docs-theme/pull/44) xyz
 
