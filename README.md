@@ -45,21 +45,35 @@ run("linky --help")
 
 ```console
 $ linky --help
-usage: linky [-h] [-V] [--no-copy] [--md | --rst] input
+usage: linky [-h] [-V] [--no-copy] [-m | -r] input
 
 linkotron: CLI to format GitHub links in a shorter format.
 
 positional arguments:
-  input          text containing GitHub links to shorten
+  input                 text containing GitHub links to shorten
 
 options:
-  -h, --help     show this help message and exit
-  -V, --version  show program's version number and exit
-  --no-copy      do not copy output to clipboard
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  --no-copy             do not copy output to clipboard
 
 formatters:
-  --md           output in Markdown
-  --rst          output in reStructuredText
+  -m, --md, --markdown  output in Markdown
+  -r, --rst, --restructuredtext
+                        output in reStructuredText
+```
+
+<!-- [[[end]]] -->
+
+### Linkify a repo
+
+<!-- [[[cog
+run("linky https://github.com/python/peps")
+]]] -->
+
+```console
+$ linky https://github.com/python/peps
+Copied! python/peps
 ```
 
 <!-- [[[end]]] -->
@@ -67,7 +81,6 @@ formatters:
 ### Linkify an issue
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/python/peps/issues/1012")
 ]]] -->
 
@@ -81,7 +94,6 @@ Copied! python/peps#1012
 ### Linkify a pull request
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/python/peps/pull/2399")
 ]]] -->
 
@@ -95,7 +107,6 @@ Copied! python/peps#2399
 ### Linkify a commit
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/hugovk/cpython/commit/28b23555030d58fdb52b74a547cc621c49690de0")
 ]]] -->
 
@@ -109,7 +120,6 @@ Copied! hugovk/cpython#28b2355
 ### Linkify a comment
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky https://github.com/python/peps/pull/2399#issuecomment-1063409480")
 ]]] -->
 
@@ -126,7 +136,6 @@ Copied! python/peps#2399 (comment)
 
 <!-- [[[cog
 run("linky --md https://github.com/python/peps/pull/2399")
-from linkotron.scripts.run_command import run
 ]]] -->
 
 ```console
@@ -139,7 +148,6 @@ Copied! [python/peps#2399](https://github.com/python/peps/pull/2399)
 #### reStructuredText
 
 <!-- [[[cog
-from linkotron.scripts.run_command import run
 run("linky --rst https://github.com/python/peps/pull/2399")
 ]]] -->
 
