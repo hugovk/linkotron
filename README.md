@@ -45,21 +45,22 @@ run("linky --help")
 
 ```console
 $ linky --help
-usage: linky [-h] [-V] [--no-copy] [--md | --rst] input
+usage: linky [-h] [-V] [--no-copy] [-m | -r] input
 
 linkotron: CLI to format GitHub links in a shorter format.
 
 positional arguments:
-  input          text containing GitHub links to shorten
+  input                 text containing GitHub links to shorten
 
 options:
-  -h, --help     show this help message and exit
-  -V, --version  show program's version number and exit
-  --no-copy      do not copy output to clipboard
+  -h, --help            show this help message and exit
+  -V, --version         show program's version number and exit
+  --no-copy             do not copy output to clipboard
 
 formatters:
-  --md           output in Markdown
-  --rst          output in reStructuredText
+  -m, --md, --markdown  output in Markdown
+  -r, --rst, --restructuredtext
+                        output in reStructuredText
 ```
 
 <!-- [[[end]]] -->
