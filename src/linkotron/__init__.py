@@ -29,6 +29,7 @@ class Patterns:
     USERNAME = "[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*"
     REPO = r"[a-zA-Z0-9]+([-_\.][a-zA-Z0-9]+)*[-_\.]?[a-zA-Z0-9]+"
 
+    REPO_URL = re.compile(rf"^https://github.com/({USERNAME})/({REPO})/?$")
     PR_OR_ISSUE = re.compile(
         rf"^https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+)/?$"
     )
@@ -44,6 +45,8 @@ class Patterns:
 def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten GitHub links"""
     match m := RegexMatcher(line):
+        case Patterns.REPO_URL:
+            short = f"{m[1]}/{m[3]}"
         case Patterns.PR_OR_ISSUE:
             short = f"{m[1]}/{m[3]}#{m[6]}"
         case Patterns.COMMIT:

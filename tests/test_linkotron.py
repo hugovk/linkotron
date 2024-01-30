@@ -11,6 +11,7 @@ import linkotron
 @pytest.mark.parametrize(
     "link, expected",
     [
+        ("https://github.com/python/peps", "python/peps"),
         ("https://github.com/python/peps/issues/2", "python/peps#2"),
         ("https://github.com/python/peps/pull/2399", "python/peps#2399"),
         (
