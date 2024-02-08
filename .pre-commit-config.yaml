@@ -46,7 +46,7 @@ repos:
       - id: mypy
         args: [--strict, --pretty, --show-error-codes, .]
         additional_dependencies:
-          [httpx, platformdirs, pytest, types-freezegun, types-python-slugify]
+          [httpx, platformdirs, pytest, python-slugify, types-freezegun]
         pass_filenames: false
 
   - repo: https://github.com/tox-dev/pyproject-fmt
