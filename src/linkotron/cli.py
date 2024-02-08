@@ -1,6 +1,7 @@
 """
 linkotron: CLI to format GitHub links in a shorter format.
 """
+
 from __future__ import annotations
 
 import argparse
