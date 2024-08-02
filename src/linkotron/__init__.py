@@ -21,8 +21,8 @@ class RegexMatcher:
         self.m = re.fullmatch(pattern, self.text)
         return bool(self.m)
 
-    def __getitem__(self, num: int) -> str:
-        return str(self.m[num])
+    def __getitem__(self, group: int | str) -> str:
+        return str(self.m[group])
 
 
 class Patterns:
@@ -30,16 +30,20 @@ class Patterns:
     USERNAME = "[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*"
     REPO = r"[a-zA-Z0-9]+([-_\.][a-zA-Z0-9]+)*[-_\.]?[a-zA-Z0-9]+"
 
-    REPO_URL = re.compile(rf"^https://github.com/({USERNAME})/({REPO})/?$")
+    REPO_URL = re.compile(
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/?$"
+    )
     PR_OR_ISSUE = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/(pull|issues)/(\d+)/?$"
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
+        r"(pull|issues)/(?P<number>\d+)/?$"
     )
     COMMIT = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/commit/([0-9a-f]+)/?$"
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
+        r"commit/(?P<sha>[0-9a-f]+)/?$"
     )
     COMMENT = re.compile(
-        rf"^https://github.com/({USERNAME})/({REPO})/"
-        r"(pull|issues)/(\d+)#issuecomment-\d+/?$"
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
+        r"(pull|issues)/(?P<number>\d+)#issuecomment-\d+/?$"
     )
 
 
@@ -47,13 +51,13 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten GitHub links"""
     match m := RegexMatcher(line):
         case Patterns.REPO_URL:
-            short = f"{m[1]}/{m[3]}"
+            short = f"{m['username']}/{m['repo']}"
         case Patterns.PR_OR_ISSUE:
-            short = f"{m[1]}/{m[3]}#{m[6]}"
+            short = f"{m['username']}/{m['repo']}#{m['number']}"
         case Patterns.COMMIT:
-            short = f"{m[1]}/{m[3]}#{m[5][:7]}"
+            short = f"{m['username']}/{m['repo']}#{m['sha'][:7]}"
         case Patterns.COMMENT:
-            short = f"{m[1]}/{m[3]}#{m[6]} (comment)"
+            short = f"{m['username']}/{m['repo']}#{m['number']} (comment)"
         case _:
             return line
 
