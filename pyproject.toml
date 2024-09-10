@@ -17,9 +17,7 @@ keywords = [
   "rst",
 ]
 license = { text = "MIT" }
-authors = [
-  { name = "Hugo van Kemenade" },
-]
+authors = [ { name = "Hugo van Kemenade" } ]
 requires-python = ">=3.10"
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -35,9 +33,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dynamic = [
-  "version",
-]
+dynamic = [ "version" ]
 dependencies = [
   "pyperclip; platform_system=='Darwin'",
   "pyperclip; platform_system=='Windows'",
@@ -55,6 +51,9 @@ scripts.linky = "linkotron.cli:main"
 [tool.hatch]
 version.source = "vcs"
 
+[tool.hatch.build.hooks.vcs]
+version-file = "src/linkotron/_version.py"
+
 [tool.hatch.version.raw-options]
 local_scheme = "no-local-version"
 
@@ -67,9 +66,11 @@ lint.select = [
   "EM",     # flake8-errmsg
   "F",      # pyflakes errors
   "I",      # isort
+  "ICN",    # flake8-import-conventions
   "ISC",    # flake8-implicit-str-concat
   "LOG",    # flake8-logging
   "PGH",    # pygrep-hooks
+  "PYI",    # flake8-pyi
   "RUF022", # unsorted-dunder-all
   "RUF100", # unused noqa (yesqa)
   "UP",     # pyupgrade
@@ -82,12 +83,10 @@ lint.ignore = [
   "E226", # Missing whitespace around arithmetic operator
   "E241", # Multiple spaces after ','
 ]
-lint.isort.known-first-party = [
-  "linkotron",
-]
-lint.isort.required-imports = [
-  "from __future__ import annotations",
-]
+lint.flake8-import-conventions.aliases.datetime = "dt"
+lint.flake8-import-conventions.banned-from = [ "datetime" ]
+lint.isort.known-first-party = [ "linkotron" ]
+lint.isort.required-imports = [ "from __future__ import annotations" ]
 
 [tool.pyproject-fmt]
 max_supported_python = "3.13"
