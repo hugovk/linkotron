@@ -4,11 +4,10 @@ CLI to format links
 
 from __future__ import annotations
 
-import importlib.metadata
 import re
 from typing import Any
 
-__version__ = importlib.metadata.version(__name__)
+from ._version import __version__ as __version__
 
 
 # https://github.com/nedbat/adventofcode2022/blob/main/day07.py
@@ -17,7 +16,9 @@ class RegexMatcher:
         self.text = text
         self.m: Any = None
 
-    def __eq__(self, pattern: Any) -> bool:
+    def __eq__(self, pattern: object) -> bool:
+        if not isinstance(pattern, re.Pattern):
+            return NotImplemented
         self.m = re.fullmatch(pattern, self.text)
         return bool(self.m)
 
