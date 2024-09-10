@@ -94,3 +94,9 @@ max_supported_python = "3.13"
 
 [tool.pytest.ini_options]
 addopts = "--color=yes"
+testpaths = [ "tests" ]
+
+[tool.mypy]
+pretty = true
+strict = true
+show_error_codes = true

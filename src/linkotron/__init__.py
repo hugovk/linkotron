@@ -17,7 +17,9 @@ class RegexMatcher:
         self.text = text
         self.m: Any = None
 
-    def __eq__(self, pattern: Any) -> bool:
+    def __eq__(self, pattern: object) -> bool:
+        if not isinstance(pattern, re.Pattern):
+            return NotImplemented
         self.m = re.fullmatch(pattern, self.text)
         return bool(self.m)
 

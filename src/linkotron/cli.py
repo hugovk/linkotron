@@ -9,7 +9,7 @@ import argparse
 from . import __version__, shorten
 
 try:
-    import pyperclip as copier  # type: ignore[import-not-found]
+    import pyperclip as copier  # type: ignore[import-untyped]
 except ImportError:
     try:
         import xerox as copier  # type: ignore[import-not-found]
