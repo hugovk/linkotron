@@ -7,7 +7,6 @@ permissions:
 
 env:
   FORCE_COLOR: 1
-  PIP_DISABLE_PIP_VERSION_CHECK: 1
 
 jobs:
   test:
@@ -20,6 +19,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -30,18 +31,14 @@ jobs:
       - name: Install uv
         uses: hynek/setup-cached-uv@v2
 
-      - name: Install dependencies
-        run: |
-          uv pip install --system -U tox-uv
-
       - name: Tox tests
         run: |
-          tox -e py
+          uvx --with tox-uv tox -e py
 
       - name: Cog
         if: matrix.python-version == '3.11' && matrix.os == 'ubuntu-latest'
         run: |
-          tox -e cog
+          uvx --with tox-uv tox -e cog
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3.1.5
