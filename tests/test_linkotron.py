@@ -24,6 +24,10 @@ import linkotron
             "https://github.com/python/peps/pull/2399#issuecomment-1063409480",
             "python/peps#2399 (comment)",
         ),
+        (
+            "https://github.com/python/peps/pull/2399#discussion_r823103351",
+            "python/peps#2399 (comment)",
+        ),
     ],
 )
 def test_shorten(link: str, expected: str) -> None:

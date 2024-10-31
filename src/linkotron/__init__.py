@@ -44,7 +44,7 @@ class Patterns:
     )
     COMMENT = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
-        r"(pull|issues)/(?P<number>\d+)#issuecomment-\d+/?$"
+        r"(pull|issues)/(?P<number>\d+)#(issuecomment-\d+|discussion_r\d+)/?$"
     )
 
 
