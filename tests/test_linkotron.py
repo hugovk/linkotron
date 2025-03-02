@@ -15,6 +15,7 @@ import linkotron
         ("https://github.com/python/peps", "python/peps"),
         ("https://github.com/python/peps/issues/2", "python/peps#2"),
         ("https://github.com/python/peps/pull/2399", "python/peps#2399"),
+        ("https://github.com/Textualize/rich/discussions/2258", "Textualize/rich#2258"),
         (
             "https://github.com/"
             "python/peps/commit/ceb81fd7b71f74aaa2295594f86501acbe620cda",
@@ -27,6 +28,10 @@ import linkotron
         (
             "https://github.com/python/peps/pull/2399#discussion_r823103351",
             "python/peps#2399 (comment)",
+        ),
+        (
+            "https://github.com/Textualize/rich/discussions/2258#discussioncomment-3543128",
+            "Textualize/rich#2258 (comment)",
         ),
     ],
 )
