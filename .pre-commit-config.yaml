@@ -22,6 +22,7 @@ repos:
       - id: debug-statements
       - id: end-of-file-fixer
       - id: forbid-submodules
+      - id: requirements-txt-fixer
       - id: trailing-whitespace
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
@@ -34,6 +35,11 @@ repos:
     rev: v1.7.7
     hooks:
       - id: actionlint
+
+  - repo: https://github.com/woodruffw/zizmor-pre-commit
+    rev: v1.4.1
+    hooks:
+      - id: zizmor
 
   - repo: https://github.com/tox-dev/pyproject-fmt
     rev: v2.5.0
@@ -50,11 +56,17 @@ repos:
     hooks:
       - id: tox-ini-fmt
 
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+
   - repo: https://github.com/rbubley/mirrors-prettier
     rev: v3.5.2
     hooks:
       - id: prettier
         args: [--prose-wrap=always, --print-width=88]
+        exclude_types: [yaml]
 
   - repo: meta
     hooks:

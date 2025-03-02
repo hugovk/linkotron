@@ -45,6 +45,8 @@ optional-dependencies.tests = [
 ]
 urls.Changelog = "https://github.com/hugovk/linkotron/releases"
 urls.Homepage = "https://github.com/hugovk/linkotron"
+urls."Issue tracker" = "https://github.com/hugovk/linkotron/issues"
+urls."Release notes" = "https://github.com/hugovk/linkotron/releases"
 urls.Source = "https://github.com/hugovk/linkotron"
 scripts.linkotron = "linkotron.cli:main"
 scripts.linky = "linkotron.cli:main"
@@ -63,7 +65,7 @@ fix = true
 
 lint.select = [
   "C4",     # flake8-comprehensions
-  "E",      # pycodestyle
+  "E",      # pycodestyle errors
   "EM",     # flake8-errmsg
   "F",      # pyflakes
   "I",      # isort
@@ -71,22 +73,27 @@ lint.select = [
   "ISC",    # flake8-implicit-str-concat
   "LOG",    # flake8-logging
   "PGH",    # pygrep-hooks
+  "PIE",    # flake8-pie
+  "PT",     # flake8-pytest-style
   "PYI",    # flake8-pyi
   "RUF022", # unsorted-dunder-all
   "RUF100", # unused noqa (yesqa)
+  "TC",     # flake8-type-checking
   "UP",     # pyupgrade
-  "W",      # pycodestyle
+  "W",      # pycodestyle warnings
   "YTT",    # flake8-2020
 ]
 lint.ignore = [
-  "E203",  # Whitespace before ':'
-  "E221",  # Multiple spaces before operator
-  "E226",  # Missing whitespace around arithmetic operator
-  "E241",  # Multiple spaces after ','
-  "UP038", # Makes code slower and more verbose
+  "E203",   # Whitespace before ':'
+  "E221",   # Multiple spaces before operator
+  "E226",   # Missing whitespace around arithmetic operator
+  "E241",   # Multiple spaces after ','
+  "PIE790", # flake8-pie: unnecessary-placeholder
+  "UP038",  # Makes code slower and more verbose
 ]
 lint.flake8-import-conventions.aliases.datetime = "dt"
 lint.flake8-import-conventions.banned-from = [ "datetime" ]
+lint.flake8-pytest-style.parametrize-names-type = "csv"
 lint.isort.known-first-party = [ "linkotron" ]
 lint.isort.required-imports = [ "from __future__ import annotations" ]
 
@@ -95,6 +102,11 @@ max_supported_python = "3.14"
 
 [tool.pytest.ini_options]
 addopts = "--color=yes"
+filterwarnings = [
+  "error",
+  # Python <= 3.11
+  "ignore:sys.monitoring isn't available, using default core:coverage.exceptions.CoverageWarning",
+]
 testpaths = [ "tests" ]
 
 [tool.mypy]

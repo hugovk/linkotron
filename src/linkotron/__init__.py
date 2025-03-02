@@ -5,9 +5,12 @@ CLI to format links
 from __future__ import annotations
 
 import re
-from typing import Any
 
 from ._version import __version__ as __version__
+
+TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from typing import Any
 
 
 # https://github.com/nedbat/adventofcode2022/blob/main/day07.py
