@@ -34,9 +34,9 @@ class Patterns:
     REPO_URL = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/?$"
     )
-    PR_OR_ISSUE = re.compile(
+    PR_ISSUE_DISCUSSION = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
-        r"(pull|issues)/(?P<number>\d+)/?$"
+        r"(pull|issues|discussions)/(?P<number>\d+)/?$"
     )
     COMMIT = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
@@ -44,7 +44,8 @@ class Patterns:
     )
     COMMENT = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
-        r"(pull|issues)/(?P<number>\d+)#(issuecomment-\d+|discussion_r\d+)/?$"
+        r"(pull|issues|discussions)/(?P<number>\d+)"
+        r"#(issuecomment-|discussion_r|discussioncomment-)\d+/?$"
     )
 
 
@@ -53,7 +54,7 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
     match m := RegexMatcher(line):
         case Patterns.REPO_URL:
             short = f"{m['username']}/{m['repo']}"
-        case Patterns.PR_OR_ISSUE:
+        case Patterns.PR_ISSUE_DISCUSSION:
             short = f"{m['username']}/{m['repo']}#{m['number']}"
         case Patterns.COMMIT:
             short = f"{m['username']}/{m['repo']}#{m['sha'][:7]}"
