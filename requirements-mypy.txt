@@ -1,0 +1,7 @@
+httpx
+mypy==1.15.0
+platformdirs
+pyperclip
+pytest
+python-slugify
+types-freezegun
