@@ -21,6 +21,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
+    parser.color = True  # type: ignore[attr-defined]
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"
     )
