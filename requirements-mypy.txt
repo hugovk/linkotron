@@ -1,5 +1,5 @@
 httpx
-mypy==1.16.0
+mypy==1.16.1
 platformdirs
 pyperclip
 pytest
