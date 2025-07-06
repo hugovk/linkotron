@@ -35,6 +35,7 @@ def main() -> None:
     for name, help_text in (
         ("md", "Markdown"),
         ("rst", "reStructuredText"),
+        ("term", "terminal"),
     ):
         format_group.add_argument(
             f"-{name[0]}",
@@ -43,7 +44,11 @@ def main() -> None:
             action="store_const",
             const=name,
             dest="formatter",
-            help=f"output in {help_text}",
+            help=(
+                "output in OSC 8 for terminal"
+                if help_text.startswith("term")
+                else f"output in {help_text}"
+            ),
         )
 
     args = parser.parse_args()

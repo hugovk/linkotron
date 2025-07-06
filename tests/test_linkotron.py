@@ -60,6 +60,11 @@ def test_shorten_no_link(link: str, expected: str) -> None:
             "rst",
             "`python/peps#2399 <https://github.com/python/peps/pull/2399>`__",
         ),
+        (
+            "https://github.com/python/peps/pull/2399",
+            "terminal",
+            "\033]8;;https://github.com/python/peps/pull/2399\033\\python/peps#2399\033]8;;\033\\",
+        ),
     ],
 )
 def test_shorten_into_format(link: str, formatter: str, expected: str) -> None:

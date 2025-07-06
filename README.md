@@ -45,7 +45,7 @@ run("linky --help")
 
 ```console
 $ linky --help
-usage: linky [-h] [-V] [--no-copy] [-m | -r] input
+usage: linky [-h] [-V] [--no-copy] [-m | -r | -t] input
 
 linkotron: CLI to format GitHub links in a shorter format.
 
@@ -61,6 +61,8 @@ formatters:
   -m, --md, --markdown  output in Markdown
   -r, --rst, --restructuredtext
                         output in reStructuredText
+  -t, --term, --terminal
+                        output in OSC 8 for terminal
 ```
 
 <!-- [[[end]]] -->
@@ -157,3 +159,10 @@ Copied! `python/peps#2399 <https://github.com/python/peps/pull/2399>`__
 ```
 
 <!-- [[[end]]] -->
+
+#### OSC 8 for terminal emulators
+
+```console
+$ linky --terminal https://github.com/python/peps/pull/2399
+Copied! \033]8;;https://github.com/python/peps/pull/2399\033\\python/peps#2399\033]8;;\033\\
+```

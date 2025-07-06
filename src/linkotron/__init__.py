@@ -70,4 +70,7 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
         return f"[{short}]({line})"
     elif formatter in ("rst", "restructuredtext"):
         return f"`{short} <{line}>`__"
+    elif formatter in ("term", "terminal"):
+        return f"\033]8;;{line}\033\\{short}\033]8;;\033\\"
+
     return short
