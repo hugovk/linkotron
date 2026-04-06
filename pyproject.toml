@@ -41,7 +41,7 @@ dependencies = [
   "pyperclip; platform_system=='Windows'",
 ]
 optional-dependencies.tests = [
-  "pytest",
+  "pytest>=9",
   "pytest-cov",
 ]
 urls."Issue tracker" = "https://github.com/hugovk/linkotron/issues"
@@ -102,11 +102,12 @@ strict = true
 show_error_codes = true
 
 [tool.pytest]
-ini_options.addopts = "--color=yes"
-ini_options.filterwarnings = [
+minversion = "9.0"
+addopts = [ "--color=yes" ]
+testpaths = [ "tests" ]
+filterwarnings = [
   "error",
 ]
-ini_options.testpaths = [ "tests" ]
 
 [tool.coverage]
 run.disable_warnings = [
