@@ -1,5 +1,5 @@
 """
-linkotron: CLI to format GitHub links in a shorter format.
+linkotron: CLI to format links in a shorter format.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ def main() -> None:
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"
     )
-    parser.add_argument("input", help="text containing GitHub links to shorten")
+    parser.add_argument("input", help="text containing links to shorten")
     parser.add_argument(
         "--no-copy", action="store_true", help="do not copy output to clipboard"
     )

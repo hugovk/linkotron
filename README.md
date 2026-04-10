@@ -8,7 +8,7 @@
 [![Licence](https://img.shields.io/github/license/hugovk/linkotron.svg)](LICENSE.txt)
 [![Code style: Black](https://img.shields.io/badge/code%20style-Black-000000.svg)](https://github.com/psf/black)
 
-CLI to format GitHub links in a shorter format.
+CLI to format links in a shorter format.
 
 ## Installation
 
@@ -47,10 +47,10 @@ run("linky --help")
 $ linky --help
 usage: linky [-h] [-V] [--no-copy] [-m | -r | -t] input
 
-linkotron: CLI to format GitHub links in a shorter format.
+linkotron: CLI to format links in a shorter format.
 
 positional arguments:
-  input                 text containing GitHub links to shorten
+  input                 text containing links to shorten
 
 options:
   -h, --help            show this help message and exit
@@ -63,6 +63,19 @@ formatters:
                         output in reStructuredText
   -t, --term, --terminal
                         output in OSC 8 for terminal
+```
+
+<!-- [[[end]]] -->
+
+### Linkify a URL
+
+<!-- [[[cog
+run("linky https://hugovk.dev/blog/2026/faster-pillow/")
+]]] -->
+
+```console
+$ linky https://hugovk.dev/blog/2026/faster-pillow/
+Copied! hugovk.dev/blog/2026/faster-pillow/
 ```
 
 <!-- [[[end]]] -->
@@ -137,6 +150,17 @@ Copied! python/peps#2399 (comment)
 #### Markdown
 
 <!-- [[[cog
+run("linky --md https://hugovk.dev/blog/2026/faster-pillow/")
+]]] -->
+
+```console
+$ linky --md https://hugovk.dev/blog/2026/faster-pillow/
+Copied! [hugovk.dev/blog/2026/faster-pillow/](https://hugovk.dev/blog/2026/faster-pillow/)
+```
+
+<!-- [[[end]]] -->
+
+<!-- [[[cog
 run("linky --md https://github.com/python/peps/pull/2399")
 ]]] -->
 
@@ -150,6 +174,17 @@ Copied! [python/peps#2399](https://github.com/python/peps/pull/2399)
 #### reStructuredText
 
 <!-- [[[cog
+run("linky --rst https://hugovk.dev/blog/2026/faster-pillow/")
+]]] -->
+
+```console
+$ linky --rst https://hugovk.dev/blog/2026/faster-pillow/
+Copied! `hugovk.dev/blog/2026/faster-pillow/ <https://hugovk.dev/blog/2026/faster-pillow/>`__
+```
+
+<!-- [[[end]]] -->
+
+<!-- [[[cog
 run("linky --rst https://github.com/python/peps/pull/2399")
 ]]] -->
 
@@ -161,6 +196,11 @@ Copied! `python/peps#2399 <https://github.com/python/peps/pull/2399>`__
 <!-- [[[end]]] -->
 
 #### OSC 8 for terminal emulators
+
+```console
+$ linky --terminal
+Copied! \033]8;;https://hugovk.dev/blog/2026/faster-pillow/\033\\hugovk.dev/blog/2026/faster-pillow/\033]8;;\033\\
+```
 
 ```console
 $ linky --terminal https://github.com/python/peps/pull/2399

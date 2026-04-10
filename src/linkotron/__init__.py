@@ -53,7 +53,7 @@ class Patterns:
 
 
 def shorten(line: str, *, formatter: str | None = None) -> str:
-    """Shorten GitHub links"""
+    """Shorten links"""
     match m := RegexMatcher(line):
         case Patterns.REPO_URL:
             short = f"{m['username']}/{m['repo']}"
@@ -64,7 +64,10 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
         case Patterns.COMMENT:
             short = f"{m['username']}/{m['repo']}#{m['number']} (comment)"
         case _:
-            return line
+            if line.startswith(("https://", "http://")):
+                short = line.removeprefix("https://").removeprefix("http://")
+            else:
+                return line
 
     if formatter in ("md", "markdown"):
         return f"[{short}]({line})"
