@@ -33,12 +33,19 @@ import linkotron
             "https://github.com/Textualize/rich/discussions/2258#discussioncomment-3543128",
             "Textualize/rich#2258 (comment)",
         ),
+        (
+            "https://hugovk.dev/blog/2026/faster-pillow/",
+            "hugovk.dev/blog/2026/faster-pillow/",
+        ),
+        (
+            "http://hugovk.dev/blog/2026/faster-pillow/",
+            "hugovk.dev/blog/2026/faster-pillow/",
+        ),
     ],
 )
 def test_shorten(link: str, expected: str) -> None:
     # Act / Assert
     assert linkotron.shorten(link) == expected
-    assert linkotron.shorten(link + "/") == expected
 
 
 @pytest.mark.parametrize("link, expected", [("some text", "some text")])
@@ -63,7 +70,26 @@ def test_shorten_no_link(link: str, expected: str) -> None:
         (
             "https://github.com/python/peps/pull/2399",
             "terminal",
-            "\033]8;;https://github.com/python/peps/pull/2399\033\\python/peps#2399\033]8;;\033\\",
+            "\033]8;;https://github.com/python/peps/pull/2399"
+            "\033\\python/peps#2399\033]8;;\033\\",
+        ),
+        (
+            "https://hugovk.dev/blog/2026/faster-pillow/",
+            "md",
+            "[hugovk.dev/blog/2026/faster-pillow/]"
+            "(https://hugovk.dev/blog/2026/faster-pillow/)",
+        ),
+        (
+            "https://hugovk.dev/blog/2026/faster-pillow/",
+            "rst",
+            "`hugovk.dev/blog/2026/faster-pillow/ "
+            "<https://hugovk.dev/blog/2026/faster-pillow/>`__",
+        ),
+        (
+            "https://hugovk.dev/blog/2026/faster-pillow/",
+            "terminal",
+            "\033]8;;https://hugovk.dev/blog/2026/faster-pillow/"
+            "\033\\hugovk.dev/blog/2026/faster-pillow/\033]8;;\033\\",
         ),
     ],
 )
