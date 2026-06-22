@@ -55,9 +55,7 @@ class Patterns:
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
         rf"security/advisories/(?P<ghsa>{GHSA})/?$"
     )
-    GLOBAL_ADVISORY = re.compile(
-        rf"^https://github.com/advisories/(?P<ghsa>{GHSA})/?$"
-    )
+    GLOBAL_ADVISORY = re.compile(rf"^https://github.com/advisories/(?P<ghsa>{GHSA})/?$")
 
 
 def shorten(line: str, *, formatter: str | None = None) -> str:
