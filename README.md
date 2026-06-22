@@ -148,12 +148,18 @@ Copied! python/peps#2399 (comment)
 ### Linkify a GitHub security advisory
 
 <!-- [[[cog
-run("linky https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7")
+run("linky https://github.com/python/cpython/security/advisories/GHSA-SGVs-bG9I-dWdv")
+run("linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg")
 ]]] -->
 
 ```console
-$ linky https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7
-Copied! python/cpython#GHSA-m2m9-56x9-7hh7
+$ linky https://github.com/python/cpython/security/advisories/GHSA-SGVs-bG9I-dWdv
+Copied! python/cpython#GHSA-SGVs-bG9I-dWdv
+```
+
+```console
+$ linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg
+Copied! GHSA-2mp6-9mjc-p6jg
 ```
 
 <!-- [[[end]]] -->
