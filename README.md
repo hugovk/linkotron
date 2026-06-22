@@ -157,6 +157,7 @@ $ linky https://github.com/python/cpython/security/advisories/GHSA-SGVs-bG9I-dWd
 Copied! python/cpython#GHSA-SGVs-bG9I-dWdv
 ```
 
+
 ```console
 $ linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg
 Copied! GHSA-2mp6-9mjc-p6jg
