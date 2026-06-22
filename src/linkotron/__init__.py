@@ -61,6 +61,8 @@ class Patterns:
 def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten links"""
     match m := RegexMatcher(line):
+        case Patterns.GLOBAL_ADVISORY:  # Otherwise this is caught by REPO_URL
+            short = m["ghsa"]
         case Patterns.REPO_URL:
             short = f"{m['username']}/{m['repo']}"
         case Patterns.PR_ISSUE_DISCUSSION:
@@ -71,8 +73,6 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             short = f"{m['username']}/{m['repo']}#{m['number']} (comment)"
         case Patterns.ADVISORY:
             short = f"{m['username']}/{m['repo']}#{m['ghsa']}"
-        case Patterns.GLOBAL_ADVISORY:
-            short = m["ghsa"]
         case _:
             if line.startswith(("https://", "http://")):
                 short = line.removeprefix("https://").removeprefix("http://")
