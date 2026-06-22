@@ -33,6 +33,7 @@ class Patterns:
     # https://stackoverflow.com/a/59082561/724176
     USERNAME = "[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*"
     REPO = r"[a-zA-Z0-9]+([-_\.][a-zA-Z0-9]+)*[-_\.]?[a-zA-Z0-9]+"
+    GHSA = r"GHSA-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}"
 
     REPO_URL = re.compile(
         rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/?$"
@@ -50,11 +51,18 @@ class Patterns:
         r"(pull|issues|discussions)/(?P<number>\d+)"
         r"#(issuecomment-|discussion_r|discussioncomment-)\d+/?$"
     )
+    ADVISORY = re.compile(
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
+        rf"security/advisories/(?P<ghsa>{GHSA})/?$"
+    )
+    GLOBAL_ADVISORY = re.compile(rf"^https://github.com/advisories/(?P<ghsa>{GHSA})/?$")
 
 
 def shorten(line: str, *, formatter: str | None = None) -> str:
     """Shorten links"""
     match m := RegexMatcher(line):
+        case Patterns.GLOBAL_ADVISORY:  # Otherwise this is caught by REPO_URL
+            short = m["ghsa"]
         case Patterns.REPO_URL:
             short = f"{m['username']}/{m['repo']}"
         case Patterns.PR_ISSUE_DISCUSSION:
@@ -63,6 +71,8 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             short = f"{m['username']}/{m['repo']}#{m['sha'][:7]}"
         case Patterns.COMMENT:
             short = f"{m['username']}/{m['repo']}#{m['number']} (comment)"
+        case Patterns.ADVISORY:
+            short = f"{m['username']}/{m['repo']}#{m['ghsa']}"
         case _:
             if line.startswith(("https://", "http://")):
                 short = line.removeprefix("https://").removeprefix("http://")
