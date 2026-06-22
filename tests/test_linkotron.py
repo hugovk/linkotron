@@ -34,6 +34,10 @@ import linkotron
             "Textualize/rich#2258 (comment)",
         ),
         (
+            "https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7",
+            "python/cpython#GHSA-m2m9-56x9-7hh7",
+        ),
+        (
             "https://hugovk.dev/blog/2026/faster-pillow/",
             "hugovk.dev/blog/2026/faster-pillow/",
         ),

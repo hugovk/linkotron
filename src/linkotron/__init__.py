@@ -50,6 +50,10 @@ class Patterns:
         r"(pull|issues|discussions)/(?P<number>\d+)"
         r"#(issuecomment-|discussion_r|discussioncomment-)\d+/?$"
     )
+    ADVISORY = re.compile(
+        rf"^https://github.com/(?P<username>{USERNAME})/(?P<repo>{REPO})/"
+        r"security/advisories/(?P<ghsa>GHSA-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4})/?$"
+    )
 
 
 def shorten(line: str, *, formatter: str | None = None) -> str:
@@ -63,6 +67,8 @@ def shorten(line: str, *, formatter: str | None = None) -> str:
             short = f"{m['username']}/{m['repo']}#{m['sha'][:7]}"
         case Patterns.COMMENT:
             short = f"{m['username']}/{m['repo']}#{m['number']} (comment)"
+        case Patterns.ADVISORY:
+            short = f"{m['username']}/{m['repo']}#{m['ghsa']}"
         case _:
             if line.startswith(("https://", "http://")):
                 short = line.removeprefix("https://").removeprefix("http://")

@@ -145,6 +145,19 @@ Copied! python/peps#2399 (comment)
 
 <!-- [[[end]]] -->
 
+### Linkify a GitHub security advisory
+
+<!-- [[[cog
+run("linky https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7")
+]]] -->
+
+```console
+$ linky https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7
+Copied! python/cpython#GHSA-m2m9-56x9-7hh7
+```
+
+<!-- [[[end]]] -->
+
 ### Formatting
 
 #### Markdown
