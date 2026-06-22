@@ -149,13 +149,18 @@ Copied! python/peps#2399 (comment)
 
 <!-- [[[cog
 run("linky https://github.com/python/cpython/security/advisories/GHSA-SGVs-bG9I-dWdv")
-run("linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg")
 ]]] -->
 
 ```console
 $ linky https://github.com/python/cpython/security/advisories/GHSA-SGVs-bG9I-dWdv
 Copied! python/cpython#GHSA-SGVs-bG9I-dWdv
 ```
+
+<!-- [[[end]]] -->
+
+<!-- [[[cog
+run("linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg")
+]]] -->
 
 ```console
 $ linky https://github.com/advisories/GHSA-2mp6-9mjc-p6jg
