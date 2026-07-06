@@ -98,17 +98,17 @@ lint.isort.required-imports = [ "from __future__ import annotations" ]
 max_supported_python = "3.16"
 
 [tool.mypy]
-pretty = true
 strict = true
+pretty = true
 show_error_codes = true
 
 [tool.pytest]
-minversion = "9.0"
 addopts = [ "--color=yes" ]
-testpaths = [ "tests" ]
 filterwarnings = [
   "error",
 ]
+minversion = "9.0"
+testpaths = [ "tests" ]
 
 [tool.coverage]
 run.disable_warnings = [
