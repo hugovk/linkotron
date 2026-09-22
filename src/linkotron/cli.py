@@ -24,7 +24,11 @@ def main() -> None:
     parser.add_argument(
         "-V", "--version", action="version", version=f"%(prog)s {__version__}"
     )
-    parser.add_argument("input", help="text containing links to shorten")
+    parser.add_argument(
+        "input",
+        nargs="?",
+        help="text containing links to shorten (default: read from clipboard)",
+    )
     parser.add_argument(
         "--no-copy", action="store_true", help="do not copy output to clipboard"
     )
@@ -51,6 +55,14 @@ def main() -> None:
         )
 
     args = parser.parse_args()
+
+    if args.input is None:
+        if copier is None:
+            parser.error("no input given and no clipboard support available")
+        args.input = copier.paste()
+
+        if not args.input:
+            parser.error("no input given and clipboard is empty")
 
     output = shorten(line=args.input, formatter=args.formatter)
     if copier and not args.no_copy and output != args.input:

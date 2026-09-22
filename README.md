@@ -45,12 +45,13 @@ run("linky --help")
 
 ```console
 $ linky --help
-usage: linky [-h] [-V] [--no-copy] [-m | -r | -t] input
+usage: linky [-h] [-V] [--no-copy] [-m | -r | -t] [input]
 
 linkotron: CLI to format links in a shorter format.
 
 positional arguments:
-  input                 text containing links to shorten
+  input                 text containing links to shorten (default: read from
+                        clipboard)
 
 options:
   -h, --help            show this help message and exit
