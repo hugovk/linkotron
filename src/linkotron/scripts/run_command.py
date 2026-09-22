@@ -6,7 +6,7 @@ import subprocess
 
 def run(command: str, with_console: bool = True, line_limit: int | None = None) -> None:
     command_parts = shlex.split(command)
-    process = subprocess.run(command_parts, capture_output=True, text=True)
+    process = subprocess.run(command_parts, capture_output=True, text=True, check=False)
     print()
     if with_console:
         print("```console")

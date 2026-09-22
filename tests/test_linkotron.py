@@ -17,8 +17,10 @@ import linkotron
         ("https://github.com/python/peps/pull/2399", "python/peps#2399"),
         ("https://github.com/Textualize/rich/discussions/2258", "Textualize/rich#2258"),
         (
-            "https://github.com/"
-            "python/peps/commit/ceb81fd7b71f74aaa2295594f86501acbe620cda",
+            (
+                "https://github.com/"
+                "python/peps/commit/ceb81fd7b71f74aaa2295594f86501acbe620cda"
+            ),
             "python/peps#ceb81fd",
         ),
         (
@@ -78,8 +80,10 @@ def test_shorten_no_link(link: str, expected: str) -> None:
         (
             "https://github.com/python/peps/pull/2399",
             "terminal",
-            "\033]8;;https://github.com/python/peps/pull/2399"
-            "\033\\python/peps#2399\033]8;;\033\\",
+            (
+                "\033]8;;https://github.com/python/peps/pull/2399"
+                "\033\\python/peps#2399\033]8;;\033\\"
+            ),
         ),
         (
             "https://github.com/python/cpython/security/advisories/GHSA-m2m9-56x9-7hh7",
@@ -89,26 +93,34 @@ def test_shorten_no_link(link: str, expected: str) -> None:
         (
             "https://github.com/advisories/GHSA-2mp6-9mjc-p6jg",
             "rst",
-            "`GHSA-2mp6-9mjc-p6jg "
-            "<https://github.com/advisories/GHSA-2mp6-9mjc-p6jg>`__",
+            (
+                "`GHSA-2mp6-9mjc-p6jg "
+                "<https://github.com/advisories/GHSA-2mp6-9mjc-p6jg>`__"
+            ),
         ),
         (
             "https://hugovk.dev/blog/2026/faster-pillow/",
             "md",
-            "[hugovk.dev/blog/2026/faster-pillow/]"
-            "(https://hugovk.dev/blog/2026/faster-pillow/)",
+            (
+                "[hugovk.dev/blog/2026/faster-pillow/]"
+                "(https://hugovk.dev/blog/2026/faster-pillow/)"
+            ),
         ),
         (
             "https://hugovk.dev/blog/2026/faster-pillow/",
             "rst",
-            "`hugovk.dev/blog/2026/faster-pillow/ "
-            "<https://hugovk.dev/blog/2026/faster-pillow/>`__",
+            (
+                "`hugovk.dev/blog/2026/faster-pillow/ "
+                "<https://hugovk.dev/blog/2026/faster-pillow/>`__"
+            ),
         ),
         (
             "https://hugovk.dev/blog/2026/faster-pillow/",
             "terminal",
-            "\033]8;;https://hugovk.dev/blog/2026/faster-pillow/"
-            "\033\\hugovk.dev/blog/2026/faster-pillow/\033]8;;\033\\",
+            (
+                "\033]8;;https://hugovk.dev/blog/2026/faster-pillow/"
+                "\033\\hugovk.dev/blog/2026/faster-pillow/\033]8;;\033\\"
+            ),
         ),
     ],
 )
