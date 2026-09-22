@@ -111,18 +111,16 @@ minversion = "9.0"
 testpaths = [ "tests" ]
 
 [tool.coverage]
-run.disable_warnings = [
-  "no-sysmon",
-]
 run.omit = [
-  "*/linkotron/__main__.py",
-  "*/linkotron/cli.py",
-  "*/linkotron/scripts/*",
+  "**/__main__.py",
+  "**/cli.py",
+  "**/scripts/*",
 ]
+run.disable_warnings = [ "no-sysmon" ]  # 3.11
+run.core = "sysmon"  # default for 3.14+, available for 3.12+
 # Regexes for lines to exclude from consideration
 report.exclude_also = [
   # Don't complain if non-runnable code isn't run:
   "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
   "return NotImplemented",
 ]
